@@ -1,0 +1,26 @@
+<idea-plugin version="2">
+    <id>com.jintin.droidlane</id>
+    <name>DroidLane</name>
+    <version>1.0</version>
+    <vendor email="jintinapps@gmail.com" url="https://github.com/Jintin/droidlane">JintinApps</vendor>
+
+    <description><![CDATA[
+      droidlane is an automation tool help you upload your apk to Google Play.<br>
+    ]]></description>
+
+    <change-notes><![CDATA[
+    ]]>
+    </change-notes>
+
+    <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="131"/>
+
+    <actions>
+        <action id="droidlane.upload" class="com.jintin.droidlane.DroidLane" text="Upload Apk"
+                description="Upload Apk to Google Play">
+            <add-to-group group-id="BuildMenu" anchor="last"/>
+        </action>
+
+    </actions>
+
+</idea-plugin>
