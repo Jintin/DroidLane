@@ -1,11 +1,11 @@
-<idea-plugin version="2">
+<idea-plugin version="2" url="https://github.com/Jintin/droidlane">
     <id>com.jintin.droidlane</id>
     <name>DroidLane</name>
     <version>1.0</version>
     <vendor email="jintinapps@gmail.com" url="https://github.com/Jintin/droidlane">JintinApps</vendor>
 
     <description><![CDATA[
-      droidlane is an automation tool help you upload your apk to Google Play.<br>
+      DroidLane is an deploy tool help you upload your apk to Google Play.<br>
     ]]></description>
 
     <change-notes><![CDATA[
@@ -13,7 +13,7 @@
     </change-notes>
 
     <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="131"/>
+    <idea-version since-build="123.72"/>
 
     <actions>
         <action id="droidlane.upload" class="com.jintin.droidlane.DroidLane" text="Upload Apk"
