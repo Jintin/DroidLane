@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 package com.jintin.droidlane
 
 import com.intellij.openapi.actionSystem.AnAction
@@ -65,7 +67,7 @@ class DroidLane extends AnAction {
         def client_id = obj.getString(CLIENT_ID)
         def secretPath = HOMEDIR + SECRET_PATH + client_id
         def secret = getSecret(secretPath, client_id)
-        if (secret == null){
+        if (secret == null) {
             return
         }
         def pkgName = obj.getString(PACKAGE)
@@ -82,7 +84,7 @@ class DroidLane extends AnAction {
                 return !name.startsWith(".")//ignore hidden file
             }
         })
-        if (list == null){
+        if (list == null) {
             Messages.showInfoMessage(MSG_INSTALL_HINT, TITLE)
             return ""
         }
@@ -106,7 +108,7 @@ class DroidLane extends AnAction {
         def secret
         if (secretFile.exists()) {
             def password = Messages.showPasswordDialog(MSG_DECRYPT_KEY, TITLE)
-            if (password == null){
+            if (password == null) {
                 return null
             }
             secret = AESUtils.decrypt(secretFile.getText(), password)
@@ -120,11 +122,11 @@ class DroidLane extends AnAction {
             }
             secretFile.createNewFile()
             secret = Messages.showPasswordDialog(MSG_SECRET, TITLE)
-            if (secret == null){
+            if (secret == null) {
                 return null
             }
             def password = Messages.showPasswordDialog(MSG_ENCRYPT_KEY, TITLE)
-            if (password == null){
+            if (password == null) {
                 return null
             }
             secretFile.setText(AESUtils.encrypt(secret, password))
@@ -141,7 +143,7 @@ class DroidLane extends AnAction {
     static Map<String, String> getChangeList(String path) {
         def map = new HashMap<>()
         def file = new File(path)
-        if (file == null){
+        if (file == null) {
             return null
         }
         for (def lang : file.listFiles()) {

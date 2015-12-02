@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 package com.jintin.droidlane.utils
 
 import org.json.JSONObject

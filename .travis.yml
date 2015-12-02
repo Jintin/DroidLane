@@ -1,0 +1,6 @@
+language: groovy
+
+script: groovy -cp src/ test/com/jintin/DroidLane/test/AESUtilsTest.groovy
+
+
+

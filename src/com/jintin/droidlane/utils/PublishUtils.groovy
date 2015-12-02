@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 package com.jintin.droidlane.utils
 
 import com.google.api.client.auth.oauth2.Credential

@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 package com.jintin.droidlane
 
 import com.google.api.client.http.FileContent
@@ -29,6 +31,7 @@ class UploadTask extends Task.Backgroundable {
     private File apkFile
     private String track
     private Map<String, String> changeList
+    private String result
 
     UploadTask(Project project, String name, JSONObject secret, File apkFile, String track, Map<String, String> changeList) {
         super(project, MSG_UPLOAD_START, true)
@@ -85,16 +88,17 @@ class UploadTask extends Task.Backgroundable {
         } catch (IOException | URISyntaxException | GeneralSecurityException ex) {
             def msg = ex.getMessage()
             println(msg)
-            setCancelText(MSG_UPLOAD_FAIL + "\n" + msg)
+            setResult(MSG_UPLOAD_FAIL + "\n" + msg)
 
             def jsonIndex = msg.indexOf("{")
             if (jsonIndex != -1) {
                 try {
                     def err = new JSONObject(msg.substring(jsonIndex))
                     if (!err.optString(ERR_DESC).empty) {
-                        setCancelText(err.optString(ERR_DESC))
+                        setResult(err.optString(ERR_DESC))
                     } else if (!err.optString(ERR_MSG).empty) {
-                        setCancelText(err.getString(ERR_MSG))
+                        setResult(err.getString(ERR_MSG))
+
                     }
                 } catch (Exception ignore) {
                     println(ignore.toString())
@@ -104,10 +108,14 @@ class UploadTask extends Task.Backgroundable {
         }
     }
 
+    private void setResult(String result){
+        this.result = result
+    }
+
     @Override
     void onSuccess() {
-        if (getCancelText() != null) {
-            Messages.showErrorDialog(getCancelText(), TITLE)
+        if (result != null) {
+            Messages.showErrorDialog(result, TITLE)
         } else {
             Messages.showInfoMessage(MSG_UPLOAD_SUCCESS, TITLE)
         }

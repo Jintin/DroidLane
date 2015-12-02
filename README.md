@@ -1,4 +1,6 @@
 # DroidLane
+[![Build Status](https://travis-ci.org/Jintin/DroidLane.svg?branch=master)](https://travis-ci.org/Jintin/DroidLane)
+
 An Android Studio plug-in help you upload your apk file to Google Play.
 
 ## Installation

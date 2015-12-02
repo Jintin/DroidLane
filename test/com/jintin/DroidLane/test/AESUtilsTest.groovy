@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 package com.jintin.DroidLane.test
 
 import com.jintin.droidlane.utils.AESUtils
