@@ -4,8 +4,8 @@
 DroidLane is an deploy tool help you upload your apk to Google Play from Android Studio or IntelliJ IDEA.
 An Android Studio / Intellij plug-in help you upload your apk file to Google Play
 ## Installation
-- Download [zip](https://github.com/Jintin/DroidLane/blob/master/DroidLane.zip) file
-- Open [Preferences] -> [Plugins] -> [Install plugin from dist], select DroidLane.zip to install
+- Open Android Studio or IntelliJ IDEA
+- Open [Preferences] -> [Plugins] -> [Browse repositories], search DroidLane to install and restart
 
 ## Usage
 - Go to Google Play **[Settings] -> [API access] -> [Create OAuth Client]** and keep your [CLIENT ID] and [CLIENT SECRET] the first-time
