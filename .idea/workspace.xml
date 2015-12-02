@@ -36,8 +36,8 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12440191">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.041467305">
+              <caret line="1" column="206" selection-start-line="1" selection-start-column="141" selection-end-line="1" selection-end-column="206" />
               <folding />
             </state>
           </provider>
@@ -626,12 +626,12 @@
       <workItem from="1448868200695" duration="822000" />
       <workItem from="1448869041740" duration="61000" />
       <workItem from="1448869147718" duration="57000" />
-      <workItem from="1448869214632" duration="11142000" />
+      <workItem from="1448869214632" duration="12696000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30088000" />
+    <option name="totallyTimeSpent" value="31642000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="828" extended-state="6" />
@@ -1057,8 +1057,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12440191">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.041467305">
+          <caret line="1" column="206" selection-start-line="1" selection-start-column="141" selection-end-line="1" selection-end-column="206" />
           <folding />
         </state>
       </provider>

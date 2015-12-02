@@ -1,8 +1,8 @@
 # DroidLane
-[![Build Status](https://travis-ci.org/Jintin/DroidLane.svg?branch=master)](https://travis-ci.org/Jintin/DroidLane)
+[![Build Status](https://travis-ci.org/Jintin/DroidLane.svg?branch=master)](https://travis-ci.org/Jintin/DroidLane) [![JetBrains compatible](https://img.shields.io/badge/JetBrains-compatible-brightgreen.svg)](https://plugins.jetbrains.com/plugin/8068)
 
-An Android Studio plug-in help you upload your apk file to Google Play.
-
+DroidLane is an deploy tool help you upload your apk to Google Play from Android Studio or IntelliJ IDEA.
+An Android Studio / Intellij plug-in help you upload your apk file to Google Play
 ## Installation
 - Download [zip](https://github.com/Jintin/DroidLane/blob/master/DroidLane.zip) file
 - Open [Preferences] -> [Plugins] -> [Install plugin from dist], select DroidLane.zip to install
