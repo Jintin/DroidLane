@@ -11,18 +11,20 @@ import java.security.Key
 class AESUtils {
 
     static String encrypt(String plainText, String encryptionKey) throws Exception {
-        encryptionKey = Helper.resizeKey(encryptionKey)
         def cipher = Helper.getCipher()
-        cipher.init(Cipher.ENCRYPT_MODE, Helper.buildKey(encryptionKey), Helper.getIvParameterSpec())
-        return Helper.byteArrayToHex(cipher.doFinal(plainText.getBytes()))
+        try {
+            cipher.init(Cipher.ENCRYPT_MODE, Helper.buildKey(encryptionKey), Helper.getIvParameterSpec())
+            return Helper.byteArrayToHex(cipher.doFinal(plainText.getBytes()))
+        } catch (Exception ignore) {
+            return null
+        }
     }
 
     static String decrypt(String text, String encryptionKey) {
-        encryptionKey = Helper.resizeKey(encryptionKey)
         def cipher = Helper.getCipher()
-        cipher.init(Cipher.DECRYPT_MODE, Helper.buildKey(encryptionKey), Helper.getIvParameterSpec())
-        byte[] cipherText = Helper.toByteArray(text)
         try {
+            cipher.init(Cipher.DECRYPT_MODE, Helper.buildKey(encryptionKey), Helper.getIvParameterSpec())
+            byte[] cipherText = Helper.toByteArray(text)
             return new String(cipher.doFinal(cipherText))
         } catch (Exception ignore) {
             return null
@@ -31,22 +33,20 @@ class AESUtils {
 
     static class Helper {
 
-        static String resizeKey(String encryptionKey) {
-            while (encryptionKey.length() < 16) {
-                encryptionKey += "0"
-            }
-            if (encryptionKey.length() > 16) {
-                encryptionKey = encryptionKey.substring(0, 16)
-            }
-            return encryptionKey
-        }
-
         static Cipher getCipher() {
             return Cipher.getInstance("AES/CBC/PKCS5Padding")
         }
 
         static Key buildKey(String password) {
-            return new SecretKeySpec(password.getBytes(), "AES")
+            while (password.length() < 16) {
+                password += "0"
+            }
+            byte[] data = password.getBytes()
+            if (data.length > 16) {
+                data = Arrays.copyOfRange(data, 0, 16);
+            }
+
+            return new SecretKeySpec(data, "AES")
         }
 
         static IvParameterSpec getIvParameterSpec() {

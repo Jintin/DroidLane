@@ -71,7 +71,19 @@ class DroidLane extends AnAction {
             return
         }
         def pkgName = obj.getString(PACKAGE)
-        def apkFile = new File(obj.getString(APK))
+        def apkPath = obj.getString(APK)
+        if (apkPath.startsWith("~" + File.separator)) {
+            apkPath = HOMEDIR + apkPath.substring(1);
+        }
+        print(apkPath)
+        def apkFile
+
+        if (apkPath.startsWith("/")) {
+            apkFile = new File(apkPath)
+        } else {
+            apkFile = new File(project.basePath, apkPath)
+        }
+
         def changeList = getChangeList(projectPath + RECENT_CHANGE)
         def upload = new UploadTask(project, pkgName, secret, apkFile, track, changeList)
         ProgressManager.getInstance().run(upload)
@@ -100,7 +112,6 @@ class DroidLane extends AnAction {
         } else {
             return ""
         }
-
     }
 
     static JSONObject getSecret(String path, String client_id) {
