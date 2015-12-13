@@ -27,18 +27,7 @@ DroidLane is an deploy tool help you upload your apk to Google Play from Android
 
 After first-time setup, you only need click button and key-in password to upload apk.
 
-### Multiple profile support
-You can also add multiple profile in flowing format.
-
-```
-└── .droidlane
-    ├── [profile_name1]
-    │   └── data.json
-    └── [profile_name2]
-        └── data.json
-```
-
-### Recent Change Text with multiple language support
+### Recent Change Text support
 Create the recent change file with content in flowing directory
 
 ```
@@ -50,6 +39,37 @@ Create the recent change file with content in flowing directory
               ├── zh_TW
               │   ...
               └── (other language)
+```
+
+### Multiple profile support
+You can also add multiple profile in flowing format.
+
+```
+└── .droidlane
+    ├── [profile_name1]
+    │   └── data.json
+    └── [profile_name2]
+        └── data.json
+```
+
+### Multiple apk support
+You can also add multiple apk in one profile to upload at the same time. Just chane the data.json from JSONObject to JSONArray.(Notice it will share the Recent Change Text)
+
+```json
+[
+  {
+    "client_id": "[CLIENT ID1]",
+    "package": "[PACKAGE NAME1]",
+    "apk": "[APK PATH1]",
+    "track": "[TRACK1](optional)"
+  },
+  {
+    "client_id": "[CLIENT ID2]",
+    "package": "[PACKAGE NAME2]",
+    "apk": "[APK PATH2]",
+    "track": "[TRACK2](optional)"
+  }
+]
 ```
 
 ## Contributing
