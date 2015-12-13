@@ -9,7 +9,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="groovy-2.4.5" level="application" />
     <orderEntry type="library" exported="" name="libs" level="project" />
+    <orderEntry type="library" name="groovy-2.4.5" level="application" />
   </component>
 </module>

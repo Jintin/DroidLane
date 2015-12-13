@@ -26,19 +26,15 @@ class UploadTask extends Task.Backgroundable {
     static def MSG_UPLOAD_FAIL = "Upload Fail"
     static def MSG_UPLOAD_SUCCESS = "Update Success"
 
-    private String name
-    private JSONObject secret
-    private File apkFile
-    private String track
-    private Map<String, String> changeList
-    private String result
+    LaneObj obj
+    JSONObject secret
+    Map<String, String> changeList
+    def result
 
-    UploadTask(Project project, String name, JSONObject secret, File apkFile, String track, Map<String, String> changeList) {
+    UploadTask(Project project, LaneObj obj, JSONObject secret, Map<String, String> changeList) {
         super(project, MSG_UPLOAD_START, true)
-        this.name = name
+        this.obj = obj
         this.secret = secret
-        this.apkFile = apkFile
-        this.track = track
         this.changeList = changeList
     }
 
@@ -55,20 +51,18 @@ class UploadTask extends Task.Backgroundable {
             def edits = service.edits()
 
             // Create a new edit to make changes to your listing.
-            def editRequest = edits.insert(name, null /** no content */)
+            def editRequest = edits.insert(obj.pkgName, null /** no content */)
             def edit = editRequest.execute()
             def editId = edit.getId()
 
             // Upload new apk to developer console
-            def apkPath = apkFile.toURI().getPath()
-            def apkFile = new FileContent(MIME_TYPE_APK, new File(apkPath))
-            def uploadRequest = edits.apks().upload(name, editId, apkFile)
+            def uploadRequest = edits.apks().upload(obj.pkgName, editId, new FileContent(MIME_TYPE_APK, obj.apk))
             def apk = uploadRequest.execute()
 
-            // Assign apk to alpha track.
+            // Assign apk to track.
             def apkVersionCodes = new ArrayList<>()
             apkVersionCodes.add(apk.getVersionCode())
-            def updateTrackRequest = edits.tracks().update(name, editId, track, new Track().setVersionCodes(apkVersionCodes))
+            def updateTrackRequest = edits.tracks().update(obj.pkgName, editId, obj.track, new Track().setVersionCodes(apkVersionCodes))
             updateTrackRequest.execute()
 
             // Update recent changes field in apk listing.
@@ -76,29 +70,28 @@ class UploadTask extends Task.Backgroundable {
                 for (def lang : changeList.keySet()) {
                     def newApkListing = new ApkListing()
                     newApkListing.setRecentChanges(changeList.get(lang))
-                    def updateRecentChangesRequest = edits.apklistings().update(name, editId, apk.getVersionCode(), lang, newApkListing)
+                    def updateRecentChangesRequest = edits.apklistings().update(obj.pkgName, editId, apk.getVersionCode(), lang, newApkListing)
                     updateRecentChangesRequest.execute()
                 }
             }
 
             // Commit changes for edit.
-            def commitRequest = edits.commit(name, editId)
+            def commitRequest = edits.commit(obj.pkgName, editId)
             commitRequest.execute()
 
         } catch (IOException | URISyntaxException | GeneralSecurityException ex) {
             def msg = ex.getMessage()
             println(msg)
-            setResult(MSG_UPLOAD_FAIL + "\n" + msg)
+            result = MSG_UPLOAD_FAIL + "\n" + msg
 
             def jsonIndex = msg.indexOf("{")
             if (jsonIndex != -1) {
                 try {
                     def err = new JSONObject(msg.substring(jsonIndex))
                     if (!err.optString(ERR_DESC).empty) {
-                        setResult(err.optString(ERR_DESC))
+                        result = err.optString(ERR_DESC)
                     } else if (!err.optString(ERR_MSG).empty) {
-                        setResult(err.getString(ERR_MSG))
-
+                        result = err.getString(ERR_MSG)
                     }
                 } catch (Exception ignore) {
                     println(ignore.toString())
@@ -106,10 +99,6 @@ class UploadTask extends Task.Backgroundable {
             }
 
         }
-    }
-
-    private void setResult(String result){
-        this.result = result
     }
 
     @Override
