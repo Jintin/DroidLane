@@ -5,7 +5,14 @@
     <vendor email="jintinapps@gmail.com" url="https://github.com/Jintin/droidlane">JintinApps</vendor>
 
     <description><![CDATA[
-      DroidLane is an deploy tool help you upload your apk to Google Play.<br>
+        <h1>Droidlane</h1>
+        <br/>
+        <a href="https://github.com/Jintin/DroidLane">GitHub</a> |
+        <a href="https://github.com/Jintin/DroidLane/issues">Issues</a>
+        <br/>
+        <br/>
+        <b>Droidlane</b> is an deploy tool help you upload your apk to Google Play.
+        <br/>
     ]]></description>
 
     <change-notes><![CDATA[
