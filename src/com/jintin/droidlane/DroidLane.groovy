@@ -2,12 +2,14 @@
 
 package com.jintin.droidlane
 
+import com.intellij.notification.NotificationType
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.ui.Messages
 import com.jintin.droidlane.utils.AESUtils
+import com.jintin.droidlane.utils.NotifyUtils
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -57,12 +59,12 @@ class DroidLane extends AnAction {
             return
         }
         for (def obj : list) {
-            if (obj.track.empty) {
-                obj.track = TRACKS[Messages.showChooseDialog(MSG_SELECT_TRACK, TITLE, TRACKS, TRACKS[0], Messages.getInformationIcon())]
-            }
             def secret = getSecret(HOMEDIR + SECRET_PATH, obj.client_id, password)
             if (secret == null) {
                 return
+            }
+            if (obj.track.empty) {
+                obj.track = TRACKS[Messages.showChooseDialog(MSG_SELECT_TRACK, TITLE, TRACKS, TRACKS[0], Messages.getInformationIcon())]
             }
 
             def changeList = getChangeList(profilePath + RECENT_CHANGE)
@@ -104,7 +106,7 @@ class DroidLane extends AnAction {
             }
             secret = AESUtils.decrypt(secretFile.getText(), password)
             if (secret == null) {
-                Messages.showErrorDialog(MSG_WRONG_PASSWORD, TITLE)
+                NotifyUtils.show(MSG_WRONG_PASSWORD, NotificationType.ERROR)
                 return null
             }
         } else {

@@ -5,18 +5,17 @@ package com.jintin.droidlane
 import com.google.api.client.http.FileContent
 import com.google.api.services.androidpublisher.model.ApkListing
 import com.google.api.services.androidpublisher.model.Track
+import com.intellij.notification.NotificationType
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.Task
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.ui.Messages
+import com.jintin.droidlane.utils.NotifyUtils
 import com.jintin.droidlane.utils.PublishUtils
 import org.json.JSONObject
 
 import java.security.GeneralSecurityException
 
 class UploadTask extends Task.Backgroundable {
-
-    static def TITLE = "DroidLane"
 
     static def MIME_TYPE_APK = "application/vnd.android.package-archive"
     static def ERR_MSG = "message"
@@ -29,7 +28,7 @@ class UploadTask extends Task.Backgroundable {
     LaneObj obj
     JSONObject secret
     Map<String, String> changeList
-    def result
+    String result
 
     UploadTask(Project project, LaneObj obj, JSONObject secret, Map<String, String> changeList) {
         super(project, MSG_UPLOAD_START, true)
@@ -104,14 +103,14 @@ class UploadTask extends Task.Backgroundable {
     @Override
     void onSuccess() {
         if (result != null) {
-            Messages.showErrorDialog(result, TITLE)
+            NotifyUtils.show(result, NotificationType.ERROR)
         } else {
-            Messages.showInfoMessage(MSG_UPLOAD_SUCCESS, TITLE)
+            NotifyUtils.show(MSG_UPLOAD_SUCCESS, NotificationType.INFORMATION)
         }
     }
 
     @Override
     public void onCancel() {
-        Messages.showInfoMessage(MSG_UPLOAD_FAIL, TITLE)
+        NotifyUtils.show(MSG_UPLOAD_FAIL, NotificationType.ERROR)
     }
 }

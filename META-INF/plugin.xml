@@ -1,7 +1,7 @@
 <idea-plugin version="2" url="https://github.com/Jintin/droidlane">
     <id>com.jintin.droidlane</id>
     <name>DroidLane</name>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <vendor email="jintinapps@gmail.com" url="https://github.com/Jintin/droidlane">JintinApps</vendor>
 
     <description><![CDATA[
@@ -16,7 +16,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        * multiple apk upload
+        * layout update
     ]]>
     </change-notes>
 
