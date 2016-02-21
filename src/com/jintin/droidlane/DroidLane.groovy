@@ -83,17 +83,16 @@ class DroidLane extends AnAction {
             Messages.showInfoMessage(MSG_INSTALL_HINT, TITLE)
             return null
         }
-        def select = 0
         if (list.size() == 0) {
-            select = -1
-        } else if (list.size() > 1) {
-            select = Messages.showChooseDialog(MSG_SELECT_PROJECT, TITLE, list, list[0], Messages.getInformationIcon())
-        }
-        if (select != -1) {
-            return path + list[select]
-        } else {
             Messages.showInfoMessage(MSG_INSTALL_HINT, TITLE)
             return null
+        } else if (list.size() > 1) {
+            def select = Messages.showChooseDialog(MSG_SELECT_PROJECT, TITLE, list, list[0], Messages.getInformationIcon())
+            if (select != -1) {
+                return path + list[select]
+            } else {
+                return null
+            }
         }
     }
 
