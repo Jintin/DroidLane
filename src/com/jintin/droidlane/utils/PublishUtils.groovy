@@ -20,13 +20,13 @@ import java.security.GeneralSecurityException
 class PublishUtils {
 
     /** Global instance of the JSON factory. */
-    private static final def JSON_FACTORY = JacksonFactory.getDefaultInstance()
+    static final def JSON_FACTORY = JacksonFactory.getDefaultInstance()
 
     /** Global instance of the HTTP transport. */
-    private static def HTTP_TRANSPORT
+    static def HTTP_TRANSPORT
 
     /** Installed application user ID. */
-    private static final def INST_APP_USER_ID = "user"
+    static final def INST_APP_USER_ID = "user"
 
     /**
      * Authorizes the installed application to access user's protected data.
@@ -34,7 +34,7 @@ class PublishUtils {
      * @throws IOException
      * @throws GeneralSecurityException
      */
-    private static Credential authorizeWithInstalledApplication(JSONObject object) throws IOException {
+    static Credential authorizeWithInstalledApplication(JSONObject object) throws IOException {
 
         // load client secrets
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(new ByteArrayInputStream(object.toString().getBytes())))
@@ -56,7 +56,7 @@ class PublishUtils {
      * @param clientSecrets the GoogleClientSecrets containing data from the
      *            file
      */
-    private static void checkClientSecretsFile(GoogleClientSecrets clientSecrets) {
+    static void checkClientSecretsFile(GoogleClientSecrets clientSecrets) {
         if (clientSecrets.getDetails().getClientId().startsWith("[[INSERT") || clientSecrets.getDetails().getClientSecret().startsWith("[[INSERT")) {
             System.exit(1)
         }
@@ -82,7 +82,7 @@ class PublishUtils {
         return new AndroidPublisher.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).build()
     }
 
-    private static void newTrustedTransport() throws GeneralSecurityException, IOException {
+    static void newTrustedTransport() throws GeneralSecurityException, IOException {
         if (null == HTTP_TRANSPORT) {
             HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport()
         }

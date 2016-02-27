@@ -1,7 +1,7 @@
 <idea-plugin version="2" url="https://github.com/Jintin/droidlane">
     <id>com.jintin.droidlane</id>
     <name>DroidLane</name>
-    <version>1.2.0</version>
+    <version>2.0.0</version>
     <vendor email="jintinapps@gmail.com" url="https://github.com/Jintin/droidlane">JintinApps</vendor>
 
     <description><![CDATA[
@@ -16,7 +16,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        * layout update
+        * add Google Play listing support
     ]]>
     </change-notes>
 
@@ -24,11 +24,19 @@
     <idea-version since-build="123.72"/>
 
     <actions>
-        <action id="droidlane.upload" class="com.jintin.droidlane.DroidLane" text="Upload Apk"
-                description="Upload Apk to Google Play">
+        <group id="droidlane.group" text="DroidLane" description="DroidLane Group"
+               popup="true">
+            <action id="droidlane.upload" class="com.jintin.droidlane.ApkAction" text="Upload Apk"
+                    description="Upload Apk to Google Play">
+                <add-to-group group-id="BuildMenu" anchor="last"/>
+            </action>
+            <action id="droidlane.list" class="com.jintin.droidlane.ListingAction" text="Upload Listing"
+                    description="Upload Listing to Google Play">
             <add-to-group group-id="BuildMenu" anchor="last"/>
-        </action>
-
+            </action>
+            <add-to-group group-id="BuildMenu" anchor="last"/>
+        </group>
     </actions>
+
 
 </idea-plugin>
