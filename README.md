@@ -16,10 +16,10 @@ An Android Studio / IntelliJ plug-in help you upload your apk or listing to Goog
 - Go to your project root dir create `.droidlane/[profile_name]/data.json` with content:
 ```json
   {
-  "client_id": "[CLIENT ID]",
-  "package": "[PACKAGE NAME]",
-  "apk": "[APK PATH]",
-  "track": "['alpha', 'beta' or 'production'](optional)"
+    "client_id": "[CLIENT ID]",
+    "package": "[PACKAGE NAME]",
+    "apk": "[APK PATH]",
+    "track": "['alpha', 'beta' or 'production'](optional)"
   }
 ```
 
@@ -48,31 +48,31 @@ Create the recent change file with content in flowing directory
 You can also add multiple profile in flowing format.
 
 ```
-└── .droidlane
-    ├── [profile_name1]
-    │   └── data.json
-    └── [profile_name2]
-        └── data.json
+  └── .droidlane
+      ├── [profile_name1]
+      │   └── data.json
+      └── [profile_name2]
+          └── data.json
 ```
 
 #### Multiple apk support
 You can also add multiple apk in one profile to upload at the same time. Just chane the data.json from JSONObject to JSONArray.(Notice it will share the Recent Change Text)
 
 ```json
-[
-  {
-    "client_id": "[CLIENT ID1]",
-    "package": "[PACKAGE NAME1]",
-    "apk": "[APK PATH1]",
-    "track": "[TRACK1](optional)"
-  },
-  {
-    "client_id": "[CLIENT ID2]",
-    "package": "[PACKAGE NAME2]",
-    "apk": "[APK PATH2]",
-    "track": "[TRACK2](optional)"
-  }
-]
+  [
+    {
+      "client_id": "[CLIENT ID1]",
+      "package": "[PACKAGE NAME1]",
+      "apk": "[APK PATH1]",
+      "track": "[TRACK1](optional)"
+    },
+    {
+      "client_id": "[CLIENT ID2]",
+      "package": "[PACKAGE NAME2]",
+      "apk": "[APK PATH2]",
+      "track": "[TRACK2](optional)"
+    }
+  ]
 ```
 ### Listing upload
 - Create necessary folder and correspond language file with content:
