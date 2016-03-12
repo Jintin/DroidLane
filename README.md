@@ -3,33 +3,34 @@
 [![JetBrains compatible](https://img.shields.io/badge/JetBrains-compatible-brightgreen.svg)](https://plugins.jetbrains.com/plugin/8068)
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/JStumpp/awesome-android)
 
-DroidLane is an deploy tool help you upload your apk to Google Play from Android Studio or IntelliJ IDEA. An Android Studio / Intellij plug-in help you upload your apk file to Google Play
+An Android Studio / IntelliJ plug-in help you upload your apk or listing to Google Play.
 
 ## Installation
 - Open Android Studio or IntelliJ IDEA
 - Open [Preferences] -> [Plugins] -> [Browse repositories], search DroidLane to install and restart
 
 ## Usage
+
+### Apk upload
 - Go to Google Play **[Settings] -> [API access] -> [Create OAuth Client]** and keep your [CLIENT ID] and [CLIENT SECRET]
 - Go to your project root dir create `.droidlane/[profile_name]/data.json` with content:
-
-  ```json
+```json
   {
   "client_id": "[CLIENT ID]",
   "package": "[PACKAGE NAME]",
   "apk": "[APK PATH]",
   "track": "['alpha', 'beta' or 'production'](optional)"
   }
-  ```
+```
 
-- Run DroidLane command in **[Build] -> [Upload Apk]**
+- Run DroidLane command in **[Build] -> [DroidLane] -> [Upload Apk]**
 - Select track if not define in data.json
 - Set [CLIENT SECRET] and encrypt with password
 - OAuth permission accept in browser
 
 After first-time setup, you only need click button and key-in password to upload apk.
 
-### Recent Change Text support
+#### Recent Change Text support
 Create the recent change file with content in flowing directory
 
 ```
@@ -43,7 +44,7 @@ Create the recent change file with content in flowing directory
               └── (other language)
 ```
 
-### Multiple profile support
+#### Multiple profile support
 You can also add multiple profile in flowing format.
 
 ```
@@ -54,7 +55,7 @@ You can also add multiple profile in flowing format.
         └── data.json
 ```
 
-### Multiple apk support
+#### Multiple apk support
 You can also add multiple apk in one profile to upload at the same time. Just chane the data.json from JSONObject to JSONArray.(Notice it will share the Recent Change Text)
 
 ```json
@@ -73,6 +74,25 @@ You can also add multiple apk in one profile to upload at the same time. Just ch
   }
 ]
 ```
+### Listing upload
+- Create necessary folder and correspond language file with content:
+```
+  └── .droidlane
+      └── [profile_name]
+          ├── fullDesc
+          │   ├── en_US
+          │   └── (other language)
+          ├── shortDesc
+          │   ├── en_US
+          │   └── (other language)
+          ├── title
+          │   ├── en_US
+          │   └── (other language)
+          └── video
+              ├── en_US
+              └── (other language)
+```
+- Run DroidLane command in **[Build] -> [DroidLane] -> [Upload Listing]**
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at [https://github.com/Jintin/DroidLane](https://github.com/Jintin/DroidLane).
