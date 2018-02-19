@@ -1,4 +1,5 @@
 # DroidLane
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/73f22d1b92c94258a29bd74a5af86dbe)](https://app.codacy.com/app/Jintin/DroidLane?utm_source=github.com&utm_medium=referral&utm_content=Jintin/DroidLane&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/Jintin/DroidLane.svg?branch=master)](https://travis-ci.org/Jintin/DroidLane)
 [![JetBrains compatible](https://img.shields.io/badge/JetBrains-compatible-brightgreen.svg)](https://plugins.jetbrains.com/plugin/8068)
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/JStumpp/awesome-android)
